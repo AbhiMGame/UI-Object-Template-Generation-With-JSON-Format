@@ -1,0 +1,30 @@
+{
+    "templateName": "JSON Template 1",
+    "imageSize": {
+        "x": 100.0,
+        "y": 100.0
+    },
+    "imageRotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "textFontColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    },
+    "textFontSize": 30.0,
+    "textContent": "Boost is the secret of my energy",
+    "buttonColor": {
+        "r": 1.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    },
+    "buttonSize": {
+        "x": 150.0,
+        "y": 50.0
+    }
+}
