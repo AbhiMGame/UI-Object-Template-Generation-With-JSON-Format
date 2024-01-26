@@ -55,7 +55,7 @@ public class AdTemplateEditor : EditorWindow
 
         templateName = EditorGUILayout.TextField("Template Name", templateName);
 
-        // UI Element Selection
+        // UI Element Selection  // ObjectField returns his line is casting the result of EditorGUILayout.ObjectField to the Image type using (Image). If the cast is not possible (for example, if the selected object is not of type Image), it would normally throw an exception. However, by using as Image, the result will be null if the cast is not successful, rather than raising an exception.
         logo = (Image)EditorGUILayout.ObjectField("Logo", logo, typeof(Image), true) as Image;
         description = (TextMeshProUGUI)EditorGUILayout.ObjectField("Description", description, typeof(TextMeshProUGUI), true) as TextMeshProUGUI;
         cta = (Button)EditorGUILayout.ObjectField("CTA Button", cta, typeof(Button), true) as Button;
