@@ -7,21 +7,24 @@ using System.IO;
 using Unity.Collections;
 using System.Collections.Generic;
 
-public class AdTemplateEditor: EditorWindow
+public class AdTemplateEditor : EditorWindow
 {
 
     private Vector2 scrollPosition;
 
     [SerializeField]
-    public Image logo;
-    public TMPro.TextMeshProUGUI description;
-    public Button cta;
-    public Camera uiCamera;
+    private Image logo;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI description;
+    [SerializeField]
+    private Button cta;
+    [SerializeField]
+    private Camera uiCamera;
 
     public string templateName = " Add template name here ";
 
-    
-private Vector2 imageSize = new Vector2(100, 100); // New image size
+
+    private Vector2 imageSize = new Vector2(100, 100); // New image size
     private Vector3 imageRotation = Vector3.zero; // New image rotation
 
     private Color textFontColor = Color.black; // New text font color
@@ -30,13 +33,13 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
 
     private Color buttonColor = Color.green; // New button color
     private Vector2 buttonSize = new Vector2(150, 50); // New button size
-   
+
     private Texture2D newImage; // New image field
 
     private string jsonFolderPath = "Assets/JSONData";
     private string jsonFilePath = "Assets/JSONData/Addata.json";
     private string selectedJsonFile = ""; // Store the selected JSON file
-    
+
 
     [MenuItem("Window/AdObjectGenerator Window")]
     public static void ShowWindow()
@@ -53,10 +56,10 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
         templateName = EditorGUILayout.TextField("Template Name", templateName);
 
         // UI Element Selection
-        logo = (Image)EditorGUILayout.ObjectField("Logo", logo, typeof(Image), true);
-        description = (TextMeshProUGUI)EditorGUILayout.ObjectField("Description", description, typeof(TextMeshProUGUI), true);
-        cta = (Button)EditorGUILayout.ObjectField("CTA Button", cta, typeof(Button), true);
-        uiCamera= (Camera)EditorGUILayout.ObjectField("Camera", uiCamera, typeof(Camera), true);
+        logo = (Image)EditorGUILayout.ObjectField("Logo", logo, typeof(Image), true) as Image;
+        description = (TextMeshProUGUI)EditorGUILayout.ObjectField("Description", description, typeof(TextMeshProUGUI), true) as TextMeshProUGUI;
+        cta = (Button)EditorGUILayout.ObjectField("CTA Button", cta, typeof(Button), true) as Button;
+        uiCamera = (Camera)EditorGUILayout.ObjectField("Camera", uiCamera, typeof(Camera), true) as Camera;
 
         EditorGUILayout.Space();
 
@@ -66,14 +69,14 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
             UpdateUIElements();
         }
 
-   
+
 
         EditorGUILayout.Space(20);
         EditorStyles.boldLabel.fontSize = 14;
-       
+
 
         EditorGUILayout.LabelField("Load Properties from JSON:", EditorStyles.boldLabel);
-        
+
 
         // Dropdown menu to select a JSON file
         List<string> jsonFiles = GetJsonFilesInFolder(jsonFolderPath);
@@ -90,7 +93,7 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
         }
 
 
-        
+
         EditorGUILayout.Space(20);
         EditorStyles.boldLabel.fontSize = 14;
         EditorGUILayout.LabelField("UI Element Properties:", EditorStyles.boldLabel);
@@ -111,7 +114,7 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
         buttonColor = EditorGUILayout.ColorField("Button Color", buttonColor);
         buttonSize = EditorGUILayout.Vector2Field("Button Size", buttonSize);
 
-        
+
 
         EditorGUILayout.Space();
         if (GUILayout.Button("Generate Ad Banner"))
@@ -237,7 +240,7 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
         if (logo != null)
         {
             // Example: Update Image component properties
-           // logo.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(" ");
+            // logo.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(" ");
             logo.color = Color.white;
             logo.rectTransform.sizeDelta = new Vector2(100f, 100f);
         }
