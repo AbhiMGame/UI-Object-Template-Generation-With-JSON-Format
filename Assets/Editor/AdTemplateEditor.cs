@@ -8,7 +8,7 @@ using Unity.Collections;
 using System.Collections.Generic;
 
 public class AdTemplateEditor: EditorWindow
-{   
+{
     [SerializeField]
     private Image logo;
     [SerializeField]
@@ -21,7 +21,7 @@ public class AdTemplateEditor: EditorWindow
     public string templateName = " Add template name here ";
 
     
-private Vector2 imageSize = new Vector2(100, 100); // New image size
+    private Vector2 imageSize = new Vector2(100, 100); // New image size
     private Vector3 imageRotation = Vector3.zero; // New image rotation
 
     private Color textFontColor = Color.black; // New text font color
@@ -34,7 +34,7 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
     private Texture2D newImage; // New image field
 
     private string jsonFolderPath = "Assets/JSONData";
-    private string jsonFilePath = "Assets/JSONData/Addata.json";
+    //private string jsonFilePath = "Assets/JSONData/Addata.json";
     private string selectedJsonFile = ""; // Store the selected JSON file
     
 
