@@ -10,10 +10,13 @@ using System.Collections.Generic;
 public class AdTemplateEditor: EditorWindow
 {   
     [SerializeField]
-    public Image logo;
-    public TMPro.TextMeshProUGUI description;
-    public Button cta;
-    public Camera uiCamera;
+    private Image logo;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI description;
+    [SerializeField]
+    private Button cta;
+    [SerializeField]
+    private Camera uiCamera;
 
     public string templateName = " Add template name here ";
 
@@ -47,10 +50,10 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
         templateName = EditorGUILayout.TextField("Template Name", templateName);
 
         // UI Element Selection
-        logo = (Image)EditorGUILayout.ObjectField("Logo", logo, typeof(Image), true);
-        description = (TextMeshProUGUI)EditorGUILayout.ObjectField("Description", description, typeof(TextMeshProUGUI), true);
-        cta = (Button)EditorGUILayout.ObjectField("CTA Button", cta, typeof(Button), true);
-        uiCamera= (Camera)EditorGUILayout.ObjectField("Camera", uiCamera, typeof(Camera), true);
+        logo = (Image)EditorGUILayout.ObjectField("Logo", logo, typeof(Image), true) as Image;   //ObjectField uses reflection an returns an value of type UnityEngine.Object, 'as' operator is used for explicit casting which returs the specified type
+        description = (TextMeshProUGUI)EditorGUILayout.ObjectField("Description", description, typeof(TextMeshProUGUI), true) as TextMeshProUGUI;
+        cta = (Button)EditorGUILayout.ObjectField("CTA Button", cta, typeof(Button), true) as Button  as Button ;
+        uiCamera= (Camera)EditorGUILayout.ObjectField("Camera", uiCamera, typeof(Camera), true) as Camera;
 
         EditorGUILayout.Space();
 
