@@ -8,7 +8,10 @@ using Unity.Collections;
 using System.Collections.Generic;
 
 public class AdTemplateEditor: EditorWindow
-{   
+{
+
+    private Vector2 scrollPosition;
+
     [SerializeField]
     public Image logo;
     public TMPro.TextMeshProUGUI description;
@@ -44,6 +47,9 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
 
     private void OnGUI()
     {
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Width(300), GUILayout.Height(600));
+
+
         templateName = EditorGUILayout.TextField("Template Name", templateName);
 
         // UI Element Selection
@@ -55,15 +61,19 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
         EditorGUILayout.Space();
 
         // UI Element Properties
-        if (GUILayout.Button("Reset Elements"))
+        if (EditorGUILayout.LinkButton("Reset Elements"))
         {
             UpdateUIElements();
         }
 
    
 
-        EditorGUILayout.Space();
-        GUILayout.Label("Load Properties from JSON:");
+        EditorGUILayout.Space(20);
+        EditorStyles.boldLabel.fontSize = 14;
+       
+
+        EditorGUILayout.LabelField("Load Properties from JSON:", EditorStyles.boldLabel);
+        
 
         // Dropdown menu to select a JSON file
         List<string> jsonFiles = GetJsonFilesInFolder(jsonFolderPath);
@@ -74,18 +84,20 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
             selectedJsonFile = jsonFiles[selectedIndex];
         }
 
-        if (GUILayout.Button("Load Properties from Selected JSON"))
+        if (EditorGUILayout.LinkButton("Load Properties from Selected JSON"))
         {
             LoadPropertiesFromJson(selectedJsonFile);
         }
 
 
-        EditorGUILayout.Space();
-        GUILayout.Label("UI Element Properties:");
+        
+        EditorGUILayout.Space(20);
+        EditorStyles.boldLabel.fontSize = 14;
+        EditorGUILayout.LabelField("UI Element Properties:", EditorStyles.boldLabel);
 
         // Image properties
         EditorGUILayout.Space();
-        GUILayout.Label("New Image:");
+        EditorGUILayout.PrefixLabel("New Image:");
         newImage = (Texture2D)EditorGUILayout.ObjectField("Select Image", newImage, typeof(Texture2D), false);
         imageSize = EditorGUILayout.Vector2Field("Image Size", imageSize);
         imageRotation = EditorGUILayout.Vector3Field("Image Rotation", imageRotation);
@@ -131,6 +143,7 @@ private Vector2 imageSize = new Vector2(100, 100); // New image size
             InstantiateUIHierarchy();
         }
 
+        EditorGUILayout.EndScrollView();
     }
 
     private List<string> GetJsonFilesInFolder(string folderPath)
